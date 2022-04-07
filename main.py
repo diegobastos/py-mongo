@@ -26,6 +26,13 @@ def insert_farms(farms):
     ret = db.farms.insert_many(farms) # inserindo vários documentos
     return ret.inserted_ids # retornando os últimos ids inseridos (ids dos docs)
 
+def delete_one_farm(conditions):
+    col = get_database("class_19004").farms
+    return col.delete_one(conditions)
+
+def delete_many_farms(conditions):
+    get_database("class_19004").farms.delete_many(conditions)
+
 def find_one_farm(conditions):
     # pprint.pprint( get_database("class_19004").farms.find(conditions)  )
     db = get_database("class_19004")
@@ -67,4 +74,6 @@ if __name__ == "__main__":
     #print(f"Fazendas inseridas. Ids:{ ids }")
 
     #find_one_farm({"manager": "Big Lauro"})
-    find_farms({"manager":"João Quebra Toco"})
+    #find_farms({"manager":"João Quebra Toco"})
+    #delete_one_farm({"manager": "João Quebra Toco"})
+    delete_many_farms({"manager": "João Quebra Toco"})
