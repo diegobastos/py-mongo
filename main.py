@@ -47,33 +47,10 @@ def find_farms(conditions):
 
 # bloco que inicia um programa em python
 if __name__ == "__main__":
-    #python listas, tuplas, dicionários
-    #mongo JSONs { "key": "value" }
-    #dictionary in python newFarm
-    farm1 ={
-        "name": "Two Brothers",
-        "manager": "Big Lauro"
-    }
-
-    farm2={
-        "name": "Big Farm",
-        "manager": "Crzy Paul"
-    }
-
-    farm3={
-        "name": "Big Farm Three",
-        "manager": "Crzy Paul"
-    }
-
-    # arm. na var id o último id inserido
-    #id = insert_farm(farm1)
-    #ids = insert_farms([farm2, farm3]) # lista de docs -> [d1, d2, d3, ...]
-
-    #imprimindo a mensagem com o ID da fazenda gerado pelo mongoDB
-    #print(f"Fazenda inserida. ID:[ {id} ]")
-    #print(f"Fazendas inseridas. Ids:{ ids }")
-
-    #find_one_farm({"manager": "Big Lauro"})
-    #find_farms({"manager":"João Quebra Toco"})
-    #delete_one_farm({"manager": "João Quebra Toco"})
-    delete_many_farms({"manager": "João Quebra Toco"})
+    #criando índice para o atributo manager
+    try: #tente executar os código abaixo
+        col_farms = get_database("class_19004").farms
+        index_manager = col_farms.create_index("manager")
+        print(f"Índice {index_manager} criado com sucesso!")
+    except:
+        print(f"Falha ao criar índice {index_manager}")
